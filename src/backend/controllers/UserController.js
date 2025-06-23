@@ -162,7 +162,7 @@ export const bookmarkPostHandler = function (schema, request) {
 };
 
 /**
- * This handler handles adding a post to user's bookmarks in the db.
+ * This handler handles remove a post to user's bookmarks in the db.
  * send POST Request at /api/users/remove-bookmark/:postId/
  * */
 
