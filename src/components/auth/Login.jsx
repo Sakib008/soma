@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { TbMessageForward } from "react-icons/tb";
-import axios from "axios";
-import { loginHandler } from "../../utils/authService";
+import { useAuth } from "../../Context/AuthContext";
 
 const Login = () => {
+  const {loginHandler} = useAuth()
   const [form, setForm] = useState({ username: "", password: "" });
-
 
   const handleForm = (e) => {
     setForm((prev) => {
@@ -20,7 +19,7 @@ const Login = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     await loginHandler(form.username, form.password);
-    setForm({username : '',password : ''})
+    setForm({ username: "", password: "" });
   };
   return (
     <div className="max-w-screen-2xl flex justify-center items-center mx-auto my-20 bg-primary-text h-[80vh]">
