@@ -4,6 +4,7 @@ import { login, signup } from "../utils/services/index";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const Token = JSON.parse(localStorage.getItem("token")) ?? "";
+  const User = JSON.parse(localStorage.getItem(""))
 
   const loginHandler = async (username, password) => {
     try {
@@ -20,6 +21,14 @@ export function AuthProvider({ children }) {
       throw error;
     }
   };
+
+  const usersHandler = async()=>{
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <AuthContext.Provider value={{ Token, loginHandler }}>
