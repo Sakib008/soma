@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
 
 /**
@@ -29,7 +28,7 @@ const postsContent = [
 
 export const posts = [
   {
-    _id: uuid(),
+    _id: 'postId1',
     content: postsContent[0],
     likes: {
       likeCount: 0,
@@ -38,7 +37,7 @@ export const posts = [
     },
     comment: [
       {
-        _id: uuid(),
+        _id: 'postId2',
         username: "janedoe",
         text: "I agree!! to manage what yay?",
       },
@@ -48,7 +47,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId3',
     content: postsContent[2],
     likes: {
       likeCount: 0,
@@ -57,7 +56,7 @@ export const posts = [
     },
     comment: [
       {
-        _id: uuid(),
+        _id: 'postId4',
         username: "janedoe",
         text: "I agree!!  go for outing. What say?",
       },
@@ -67,7 +66,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId5',
     content: postsContent[1],
     likes: {
       likeCount: 0,
@@ -75,14 +74,14 @@ export const posts = [
       dislikedBy: [],
     },
     comment: [
-      { _id: uuid(), username: "janedoe", text: "I like  outing. What say?" },
+      { _id: 'postId6', username: "janedoe", text: "I like  outing. What say?" },
     ],
     username: "shubham",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId7',
     content: postsContent[3],
     likes: {
       likeCount: 0,
@@ -91,7 +90,7 @@ export const posts = [
     },
     comment: [
       {
-        _id: uuid(),
+        _id: 'postId8',
         username: "janedoe",
         text: "I agree!! Feels like . What say?",
       },
@@ -101,7 +100,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId9',
     content: postsContent[4],
     likes: {
       likeCount: 0,
@@ -110,7 +109,7 @@ export const posts = [
     },
     comment: [
       {
-        _id: uuid(),
+        _id: 'postId10',
         username: "janedoe",
         text: "I do listen this , What say?",
       },
@@ -120,7 +119,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId11',
     content: postsContent[5],
     likes: {
       likeCount: 0,
@@ -128,14 +127,14 @@ export const posts = [
       dislikedBy: [],
     },
     comment: [
-      { _id: uuid(), username: "janedoe", text: "I manage my day with this.?" },
+      { _id: 'postId12', username: "janedoe", text: "I manage my day with this.?" },
     ],
     username: "sameer001",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId13',
     content: postsContent[6],
     likes: {
       likeCount: 0,
@@ -143,14 +142,14 @@ export const posts = [
       dislikedBy: [],
     },
     comment: [
-      { _id: uuid(), username: "janedoe", text: "Very Best outing. What say?" },
+      { _id: 'postId14', username: "janedoe", text: "Very Best outing. What say?" },
     ],
     username: "saziya243",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId15',
     content: postsContent[7],
     likes: {
       likeCount: 0,
@@ -158,13 +157,13 @@ export const posts = [
       dislikedBy: [],
     },
 
-    comment: [{ _id: uuid(), username: "janedoe", text: "I agree! What say?" }],
+    comment: [{ _id: 'postId16', username: "janedoe", text: "I agree! What say?" }],
     username: "saziya243",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId17',
     content: postsContent[8],
     likes: {
       likeCount: 0,
@@ -173,7 +172,7 @@ export const posts = [
     },
     comment: [
       {
-        _id: uuid(),
+        _id: 'postId18',
         username: "janedoe",
         text: " Feels like we should go for outing.",
       },
@@ -183,7 +182,7 @@ export const posts = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'postId19',
     content: postsContent[9],
     likes: {
       likeCount: 0,
@@ -192,7 +191,7 @@ export const posts = [
     },
     comment: [
       {
-        _id: uuid(),
+        _id: 'postId20',
         username: "janedoe",
         text: "I agree!! I will meet. What say?",
       },

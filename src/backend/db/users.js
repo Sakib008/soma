@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils.js";
 /**
  * User Database can be added here.
@@ -7,7 +6,7 @@ import { formatDate } from "../utils/authUtils.js";
 
 export const users = [
   {
-    _id: uuid(),
+    _id: 'user1',
     firstName: "Mohammad",
     lastName: "Sakib",
     username: "sakib",
@@ -17,7 +16,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: 'user2',
     firstName: "Adarsh",
     lastName: "Balika",
     username: "adarshbalika",
@@ -26,7 +25,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'user3',
     firstName: "Saziya",
     lastName: "Parveen",
     username: "saziya243",
@@ -35,7 +34,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'user4',
     firstName: "Piyush",
     lastName: "Ranjan",
     username: "piyush",
@@ -44,7 +43,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'user5',
     firstName: "Shubham",
     lastName: "Sharma",
     username: "shubham",
@@ -53,7 +52,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 'user6',
     firstName: "Mohammad",
     lastName: "Sameer",
     username: "sameer001",
