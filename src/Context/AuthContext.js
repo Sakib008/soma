@@ -4,7 +4,7 @@ import { login, signup } from "../utils/services/index";
 export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const Token = JSON.parse(localStorage.getItem("token")) ?? "";
-  const User = JSON.parse(localStorage.getItem(""))
+  const User = JSON.parse(localStorage.getItem("user")??'')
 
   const loginHandler = async (username, password) => {
     try {
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ Token, loginHandler }}>
+    <AuthContext.Provider value={{ Token, loginHandler,User }}>
       {children}
     </AuthContext.Provider>
   );
