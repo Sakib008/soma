@@ -3,7 +3,7 @@ import { BsHeart, BsPerson } from "react-icons/bs";
 import { RiRocket2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ onOpenModal }) => {
   const sideLink = [
     { name: "home", path: "/", icon: BiHome },
     { name: "explore", path: "/explore", icon: RiRocket2Line },
@@ -23,7 +23,10 @@ const Sidebar = ({ children }) => {
           <span className="capitalize">{name}</span>
         </Link>
       ))}
-      <button className="bg-primary-text text-secondary-bg my-6 p-2 w-4/5 mx-auto font-bold">
+      <button
+        className="bg-primary-text text-secondary-bg my-6 p-2 w-4/5 mx-auto font-bold"
+        onClick={onOpenModal}
+      >
         Create a Post
       </button>
     </div>
