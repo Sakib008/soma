@@ -111,7 +111,7 @@ const Login = () => {
           
           {/* General error message */}
           {errors.general && (
-            <div className="text-red-500 text-xl mt-2 text-center">
+            <div className="text-red-900 text-xl mt-2 text-center">
               {errors.general}
             </div>
           )}
@@ -124,7 +124,7 @@ const Login = () => {
                 type="text"
                 value={form.username}
                 className={`my-2 border-primary-bg px-3 p-1.5 border-4 bg-transparent focus:outline-none ${
-                  errors.username ? 'border-red-500' : ''
+                  errors.username ? 'border-red-900' : ''
                 }`}
                 name="username"
                 id="username"
