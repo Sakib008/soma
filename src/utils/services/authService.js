@@ -5,8 +5,8 @@ const login = async ({username,password})=>{
     return res
 }
 
-const signup = async (req)=>{
-   const res = await axios.post('/api/auth/signup',req)
+const signup = async (userdata)=>{
+   const res = await axios.post('/api/auth/signup',userdata)
    return res
 }
 
