@@ -5,6 +5,7 @@ import { initialState } from "../Reducer/PostReducer";
 import {
   allPosts,
   allUsers,
+  postCreate,
   postDislike,
   postLike,
   singlePost,
@@ -29,6 +30,17 @@ export function PostProvider({ children }) {
       throw error;
     }
   };
+  const createPost = async (token,content)=>{
+    try {
+      const {data : {posts},status}  = await postCreate(token,content)
+      if(status ===200 || status===201){
+        dispatch({ type: GET_ALL_POSTS, payload: posts });
+      }
+    } catch (error) {
+      console.error(error.message)
+      throw error
+    }
+  }
   const likePost = async (postId, token) => {
     try {
       const {
@@ -105,6 +117,7 @@ export function PostProvider({ children }) {
         dispatch,
         likePost,
         dislikePost,
+        createPost
       }}
     >
       {children}
