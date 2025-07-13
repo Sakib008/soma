@@ -36,11 +36,9 @@ const CreatePostModal = ({ user, onClose }) => {
 
     try {
       await createPost(Token,content);
-      console.log("content of create page : ",content)
       setContent("");
       onClose();
     } catch (err) {
-      console.error("Error on create model",err)
       setError("Failed to create post. Try again.");
     } finally {
       setLoading(false);
@@ -52,8 +50,8 @@ const CreatePostModal = ({ user, onClose }) => {
   
 
   const modalContent = (
-    <div className="fixed inset-0 h-full bg-black bg-opacity-40 flex items-center justify-center z-[9999] pointer-events-auto" onClick={onClose}>
-      <div className="bg-white text-primary-bg rounded-lg shadow-lg p-6 w-full max-w-md relative z-[10000] pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 h-full bg-black bg-opacity-40 flex items-center justify-center z-10 pointer-events-auto" onClick={onClose}>
+      <div className="bg-white text-primary-bg rounded-lg shadow-lg p-6 w-full max-w-md relative z-20 pointer-events-auto" onClick={(e) => e.stopPropagation()}>
         <button className="absolute top-4 right-4 text-4xl  " onClick={onClose}>&times;</button>
         <h2 className="text-2xl font-bold mb-4">Create a Post</h2>
         <User user={user} />
