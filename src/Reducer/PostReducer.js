@@ -2,25 +2,24 @@ import {
   CREATE_POST,
   GET_ALL_POSTS,
   GET_ALL_USERS,
- 
+  ADD_BOOKMARK,
   USER_PROFILE,
+  GET_LIKED_POSTS,
 } from "../utils/action";
 
 export const initialState = {
   posts: {
     all: [],
+    bookmark: [],
+    liked: [],
   },
   users: {
     all: [],
   },
   profile: {
-    data: {},
     avatar: "",
     bio: "",
     portfolio: "",
-    follow: [],
-    follower: [],
-    post: [],
   },
 };
 
@@ -31,13 +30,24 @@ const postReducer = (state, action) => {
     case GET_ALL_USERS:
       return { ...state, users: { ...state.users, all: action.payload } };
     case USER_PROFILE:
-      return { ...state, profile: { ...state.profile, data: action.payload } };
+      return {
+        ...state,
+        profile: Object.assign(state.profile, action.payload),
+      };
     case CREATE_POST:
       return {
         ...state,
         posts: { ...state.posts, all: [...state.posts.all, action.payload] },
       };
-
+    case GET_LIKED_POSTS : 
+      return {
+        ...state,posts : {...state.posts,liked : action.payload}
+      }
+    case ADD_BOOKMARK:
+      return {
+        ...state,
+        posts: { ...state.posts, bookmark: action.payload },
+      };
     default:
       return state;
   }

@@ -71,7 +71,43 @@ const postDislike = async (postId,encodedToken) => {
     throw error;
   }
 };
-
+const postBookmark = async (postId,encodedToken)=>{
+  try {
+    return await axios.post(`/api/users/bookmark/${postId}`,{},{
+      headers : {authorization : JSON.stringify(encodedToken)}
+    })
+    
+  } catch (error) {
+    console.error(error.message)
+    throw error;
+  }
+}
+const removePostBookmark = async (postId,encodedToken) => {
+  try {
+    return await axios.post(`/api/users/remove-bookmark/${postId}`,{},{
+      headers : {authorization : JSON.stringify(encodedToken)}
+    })
+  } catch (error) {
+    console.error(error.message)
+    throw error;
+  }
+}
+const allBookmarkPosts = async (encodedToken)=>{
+  try {
+    console.log("Making request to /api/users/bookmark with token:", encodedToken);
+    const response = await axios.get(`/api/users/bookmark`,{},{
+      headers : {
+        authorization : JSON.stringify(encodedToken)
+      }
+    })
+    console.log("Response from bookmark API:", response);
+    return response;
+  } catch (error) {
+    console.error("Error in allBookmarkPosts:", error.message)
+    console.error("Error details:", error.response?.data);
+    throw error
+  }
+}
 const postDelete = async (postId) => {
   try {
     return await axios.post(`/api/user/posts/${postId}`);
@@ -90,4 +126,6 @@ export {
   postLike,
   postDelete,
   postDislike,
+  postBookmark,
+  removePostBookmark,allBookmarkPosts
 };
