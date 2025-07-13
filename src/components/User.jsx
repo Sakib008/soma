@@ -1,29 +1,24 @@
-// action = {
-//   name : 'name of action',
-//   function : function() of action
-// }
 
-// user = user_object
-const User = (user, action) => {
+const User = ({user}) => {
+  if (!user) return null;
   return (
-    <div>
+    <div className="flex items-center gap-3 p-2">
       <div>
-        {user?.avatar ? (
+        {user.avatar ? (
           <img
-            className="w-full "
-            src={user?.avtar ?? ""}
-            alt={user?.username ?? ""}
+            className="w-12 h-12 rounded-full object-cover"
+            src={user.avatar}
+            alt={user.username}
           />
         ) : (
-          <p className="w-full">{String(user.username).at(0)}</p>
+          <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold">
+            {user.username?.charAt(0).toUpperCase()}
+          </div>
         )}
       </div>
-      <div className="flex justify-between mx-4">
-        <div className="flex flex-col">
-          <p>{`@${user.username}`}</p>
-          <p>{`${user.firstName} ${user.lastName}`}</p>
-        </div>
-        <div><button onClick={action?.function ?? ''}>{action?.name ?? ''}</button></div>
+      <div className="flex flex-col text-xl">
+        <span className="font-semibold">@{user.username}</span>
+        <span>{user.firstName} {user.lastName}</span>
       </div>
     </div>
   );
