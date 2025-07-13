@@ -15,7 +15,7 @@ const Layout = ({children}) => {
       </div>
       <div className="flex h-[calc(100vh-4rem)] pt-0"> 
         <Sidebar onOpenModal={() => setShowModal(true)} />
-        <main className="flex-1 overflow-auto ml-80">
+        <main className="flex-1 overflow-auto">
           <div className="flex justify-center pt-6 h-full">
             {children}
           </div>
