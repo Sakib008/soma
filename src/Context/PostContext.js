@@ -10,8 +10,9 @@ import {
   postLike,
   singlePost,
 } from "../utils/services";
-import { GET_ALL_POSTS, GET_ALL_USERS, USER_PROFILE } from "../utils/action";
+import { ADD_BOOKMARK, GET_ALL_POSTS, GET_ALL_USERS, USER_PROFILE } from "../utils/action";
 import { useAuth } from "./AuthContext";
+import { allBookmarkPosts, postBookmark, removePostBookmark } from "../utils/services/postServices";
 
 export const PostContext = createContext();
 
@@ -38,6 +39,43 @@ export function PostProvider({ children }) {
       }
     } catch (error) {
       console.error(error.message)
+      throw error
+    }
+  }
+  const bookmarkPost = async(postId,token)=>{
+    try {
+      const {data : {bookmarks},status} = await postBookmark(postId,token)
+      console.log("response for bookmark : ",bookmarks)
+      if(status===200 || status===201){
+        dispatch({type : ADD_BOOKMARK,payload : bookmarks})
+      }
+    } catch (error) {
+      console.error(error.message)
+      throw error
+    }
+  }
+  const removeBookmarkPost = async (postId,token)=>{
+    try {
+      const {data : {bookmarks},status}  = await removePostBookmark(postId,token)
+      if(status===200 || status ===201){
+        console.log("Response from remove bookmark : ",bookmarks)
+        dispatch({type : ADD_BOOKMARK,payload : bookmarks})
+      }
+    } catch (error) {
+      console.error(error.message)
+      throw error
+    }
+  }
+  const getAllBookmarkPosts = async (token)=>{
+    try {
+      console.log("Fetching bookmarks with token:", token);
+      const {data : {bookmarks},status} = await allBookmarkPosts(token);
+      console.log("Bookmarks response:", {bookmarks, status});
+      if(status===200 || status===201){
+        dispatch({type : ADD_BOOKMARK, payload : bookmarks})
+      }
+    } catch (error) {
+      console.error("Error in getAllBookmarkPosts:", error.message)
       throw error
     }
   }
@@ -105,9 +143,9 @@ export function PostProvider({ children }) {
   useEffect(() => {
     userFetch();
     getAllUser();
-    getAllPost();
+    getAllPost()
   }, []);
-  console.log("All the post : ", state.posts.all);
+  console.log("All the posts  : ",state.posts.all)
   return (
     <PostContext.Provider
       value={{
@@ -117,7 +155,10 @@ export function PostProvider({ children }) {
         dispatch,
         likePost,
         dislikePost,
-        createPost
+        createPost,
+        bookmarkPost,
+        removeBookmarkPost,
+        getAllBookmarkPosts
       }}
     >
       {children}
