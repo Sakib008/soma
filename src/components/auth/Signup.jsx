@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useAuth } from "../../Context/AuthContext";
+import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { signupUser } = useAuth();
@@ -22,6 +23,9 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   useEffect(() => {
     firstnameRef.current?.focus();
   }, []);
@@ -84,6 +88,7 @@ const Signup = () => {
         confirmPassword: "",
       });
       setErrors({});
+      navigate(from,replace)
     } catch (error) {
       setErrors({ general: "Signup failed. Please try again." });
     } finally {
@@ -247,6 +252,7 @@ const Signup = () => {
               </div>
             </div>
           </div>
+          <p className="text-xl ">Already have an account ? <span className="text-primary-bg font-semibold underline underline-offset-2"><Link to={'/login'}>LogIn</Link></span></p>
           <button
             ref={submitButtonRef}
             type="submit"
