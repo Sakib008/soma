@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbMessageForward } from "react-icons/tb";
 import { useAuth } from "../../Context/AuthContext";
 
@@ -8,6 +9,9 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   // useRef hooks for DOM manipulation
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -70,6 +74,7 @@ const Login = () => {
       await loginHandler(form.username, form.password);
       setForm({ username: "", password: "" });
       setErrors({});
+      navigate(from,{replace : true})
     } catch (error) {
       // Handle login error
       setErrors({ general: "Login failed. Please check your credentials." });
@@ -90,7 +95,9 @@ const Login = () => {
       }
     }
   };
-
+const handleGuestLogin=(e)=>{
+  setForm({username: "sakib",password : 'Sakib#123'})
+}
   return (
     <div className="max-w-screen-2xl flex justify-center items-center mx-auto my-20 bg-primary-text h-[80vh]">
       <div className="font-semibold w-1/2 text-3xl text-secondary-text flex flex-col items-center ">
@@ -158,6 +165,7 @@ const Login = () => {
               )}
             </div>
           </div>
+          <p className="text-xl ">Don't have an account ? <span className="text-primary-bg font-semibold underline underline-offset-2"><Link to={'/signup'}>SignUp</Link></span></p>
           <button
             ref={submitButtonRef}
             type="submit"
@@ -167,6 +175,16 @@ const Login = () => {
             }`}
           >
             {isLoading ? 'Logging in...' : 'Login'}
+          </button>
+          <button
+            type="submit"
+            onClick={handleGuestLogin}
+            disabled={isLoading}
+            className={`bg-secondary-bg p-2 text-xl font-semibold m-4 w-1/2 mx-auto ${
+              isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-80'
+            }`}
+          >
+            {isLoading ? 'Logging in...' : 'Login as guest'}
           </button>
         </form>
       </div>
