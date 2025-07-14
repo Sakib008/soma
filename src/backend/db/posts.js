@@ -31,7 +31,7 @@ export const posts = [
     _id: 'postId1',
     content: postsContent[0],
     likes: {
-      likeCount: 0,
+      likeCount: 2,
       likedBy: [],
       dislikedBy: [],
     },
@@ -50,7 +50,7 @@ export const posts = [
     _id: 'postId3',
     content: postsContent[2],
     likes: {
-      likeCount: 0,
+      likeCount: 1,
       likedBy: [],
       dislikedBy: [],
     },
@@ -69,7 +69,7 @@ export const posts = [
     _id: 'postId5',
     content: postsContent[1],
     likes: {
-      likeCount: 0,
+      likeCount: 3,
       likedBy: [],
       dislikedBy: [],
     },
@@ -103,7 +103,7 @@ export const posts = [
     _id: 'postId9',
     content: postsContent[4],
     likes: {
-      likeCount: 0,
+      likeCount: 4,
       likedBy: [],
       dislikedBy: [],
     },
@@ -122,7 +122,7 @@ export const posts = [
     _id: 'postId11',
     content: postsContent[5],
     likes: {
-      likeCount: 0,
+      likeCount: 3,
       likedBy: [],
       dislikedBy: [],
     },
@@ -152,7 +152,7 @@ export const posts = [
     _id: 'postId15',
     content: postsContent[7],
     likes: {
-      likeCount: 0,
+      likeCount: 6,
       likedBy: [],
       dislikedBy: [],
     },
@@ -185,13 +185,51 @@ export const posts = [
     _id: 'postId19',
     content: postsContent[9],
     likes: {
-      likeCount: 0,
+      likeCount: 1,
       likedBy: [],
       dislikedBy: [],
     },
     comment: [
       {
         _id: 'postId20',
+        username: "janedoe",
+        text: "I agree!! I will meet. What say?",
+      },
+    ],
+    username: "sakib",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: 'postId21',
+    content: "You Don't reach at the level of you Goal,✨🎇👔 You fall on the level of your system.🎑🎑",
+    likes: {
+      likeCount: 4,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comment: [
+      {
+        _id: 'postId22',
+        username: "janedoe",
+        text: "I agree!! I will meet. What say?",
+      },
+    ],
+    username: "sakib",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: 'postId23',
+    content: "Success Comes from 😎, Sacrifice and Sacrifice get strong with the Decipline.🎄🎈",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comment: [
+      {
+        _id: 'postId24',
         username: "janedoe",
         text: "I agree!! I will meet. What say?",
       },
