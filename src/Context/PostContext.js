@@ -145,12 +145,12 @@ export function PostProvider({ children }) {
     getAllUser();
     getAllPost()
   }, []);
-  console.log("All the posts  : ",state.posts.all)
   return (
     <PostContext.Provider
       value={{
         getSinglePost,
         getAllPost,
+        getAllUser,
         state,
         dispatch,
         likePost,
@@ -158,7 +158,8 @@ export function PostProvider({ children }) {
         createPost,
         bookmarkPost,
         removeBookmarkPost,
-        getAllBookmarkPosts
+        getAllBookmarkPosts,
+        userFetch
       }}
     >
       {children}
