@@ -18,7 +18,14 @@ export const PostContext = createContext();
 
 export function PostProvider({ children }) {
   const [state, dispatch] = useReducer(postReducer, initialState);
-  const { User } = useAuth();
+  const { User,loading } = useAuth();
+   useEffect(() => {
+    if(!loading && User) {
+      userFetch();
+      getAllUser();
+      getAllPost()
+    }
+  }, []);
 
   const getAllPost = async () => {
     try {
@@ -45,7 +52,6 @@ export function PostProvider({ children }) {
   const bookmarkPost = async(postId,token)=>{
     try {
       const {data : {bookmarks},status} = await postBookmark(postId,token)
-      console.log("response for bookmark : ",bookmarks)
       if(status===200 || status===201){
         dispatch({type : ADD_BOOKMARK,payload : bookmarks})
       }
@@ -58,7 +64,6 @@ export function PostProvider({ children }) {
     try {
       const {data : {bookmarks},status}  = await removePostBookmark(postId,token)
       if(status===200 || status ===201){
-        console.log("Response from remove bookmark : ",bookmarks)
         dispatch({type : ADD_BOOKMARK,payload : bookmarks})
       }
     } catch (error) {
@@ -68,9 +73,7 @@ export function PostProvider({ children }) {
   }
   const getAllBookmarkPosts = async (token)=>{
     try {
-      console.log("Fetching bookmarks with token:", token);
       const {data : {bookmarks},status} = await allBookmarkPosts(token);
-      console.log("Bookmarks response:", {bookmarks, status});
       if(status===200 || status===201){
         dispatch({type : ADD_BOOKMARK, payload : bookmarks})
       }
@@ -139,12 +142,15 @@ export function PostProvider({ children }) {
       throw error;
     }
   };
-  const userFetch = () => dispatch({ type: USER_PROFILE, payload: User });
-  useEffect(() => {
-    userFetch();
-    getAllUser();
-    getAllPost()
-  }, []);
+  const userFetch = async () =>{
+    try {
+      dispatch({ type: USER_PROFILE, payload: User });
+    } catch (error) {
+      console.error("Error fetching user profile:", error.message);
+      throw error;
+    }
+  } 
+ 
   return (
     <PostContext.Provider
       value={{
