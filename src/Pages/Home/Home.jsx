@@ -42,11 +42,31 @@ const SuggestedUsers = ({ users, followingUsernames, currentUsername, onFollow }
 };
 
 const Home = () => {
+  const {loading} = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState("trending");
   const [displayPosts, setDisplayPosts] = useState([]);
-  const { state, getAllPost, getAllUser } = usePost();
+  const { state, getAllPost,userFetch, getAllUser } = usePost();
   
+   useEffect(() => {
+    setIsLoading(true);
+    if(!loading) {
+      userFetch();
+    }
+    if (!state.posts.all || state.posts.all.length === 0) {
+      getAllPost();
+    }
+    if (!state.users.all || state.users.all.length === 0) {
+      getAllUser();
+    }
+    setIsLoading(false);
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    setDisplayPosts(sortPosts(homePosts, filter));
+    // eslint-disable-next-line
+  }, [state.posts.all, state.profile, filter]);
 
   // Get current user's username and following list
   const currentUsername = state.profile.username;
@@ -71,33 +91,18 @@ const Home = () => {
     return posts;
   };
 
-  useEffect(() => {
-    if (!state.posts.all || state.posts.all.length === 0) {
-      getAllPost();
-    }
-    if (!state.users.all || state.users.all.length === 0) {
-      getAllUser();
-    }
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    setDisplayPosts(sortPosts(homePosts, filter));
-    // eslint-disable-next-line
-  }, [state.posts.all, state.profile, filter]);
-  console.log("All display posts : ",displayPosts)
+ 
   const handleFollow = async (userId, token) => {
     try {
       await postFollow(userId, token);
-      console.log("Successfully followed user:", userId);
       getAllUser();
     } catch (error) {
-      console.error("Failed to follow user:", error);
+      console.error("Failed to follow user:", error.message || error.response?.data?.error || error);
       alert("Failed to follow user");
     }
   };
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return (
       <div className="flex justify-center h-fit rounded-3xl items-center font-bold text-5xl p-10 m-5 bg-white shadow-lg">
         Loading...
