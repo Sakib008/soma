@@ -90,7 +90,7 @@ const Post = ({ myPost ,bookmarkPage }) => {
                 <BiHeart
                   className={`${
                     isLiked
-                      ? "bg-red-600 rounded-3xl border-primary-text border-2 p-0.5"
+                      ? "bg-red-600 text-white rounded-3xl p-0.5"
                       : ""
                   } `}
                   size={30}
@@ -102,7 +102,7 @@ const Post = ({ myPost ,bookmarkPage }) => {
               <button onClick={handleBookmark} >
                 <BiBookmark size={30}  className={`${
                     isBookmark
-                      ? "bg-blue-600 rounded-3xl border-primary-text border-2 p-0.5"
+                      ? "bg-blue-600 rounded-3xl text-white p-1"
                       : ""
                   } `}/>
               </button>
