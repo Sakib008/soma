@@ -49,18 +49,26 @@ const removePost = async(postId)=>{
     }
 }
 
-const postFollow =async (followUserId)=>{
+const postFollow =async (followUserId,encodedToken)=>{
     try {
-        return await axios.post(`/api/users/follow/${followUserId}`)
+        return await axios.post(`/api/users/follow/${followUserId}`,{},{
+            headers : {
+                authorization : encodedToken
+            }
+        })
     } catch (error) {
         console.error(error)
         throw error
     }
 }
 
-const postUnfollow = async (followUserId) =>{
+const postUnfollow = async (followUserId,encodedToken) =>{
     try {
-        return await axios.post(`/api/users/unfollow/${followUserId}`)
+        return await axios.post(`/api/users/unfollow/${followUserId}`,{},{
+            headers : {
+                authorization : encodedToken
+            }
+        })
     } catch (error) {
         console.error(error)
         throw error
