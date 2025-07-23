@@ -7,6 +7,10 @@ import {
   GET_LIKED_POSTS,
   EDIT_POSTS,
   DELETE_POSTS,
+  GET_SEARCH_USERS,
+  GET_USER_FOLLOWING,
+  GET_USER_FOLLOWERS,
+  GET_SUGGESTED_USERS
 } from "../utils/action";
 
 export const initialState = {
@@ -17,6 +21,10 @@ export const initialState = {
   },
   users: {
     all: [],
+    suggested : [],
+    following: [],
+    followers: [],
+    search: [],
   },
   profile: {
     avatar: "",
@@ -31,6 +39,14 @@ const postReducer = (state, action) => {
       return { ...state, posts: { ...state.posts, all: action.payload } };
     case GET_ALL_USERS:
       return { ...state, users: { ...state.users, all: action.payload } };
+    case GET_SUGGESTED_USERS:
+      return { ...state, users: { ...state.users, suggested: action.payload } };
+    case GET_USER_FOLLOWERS:
+      return { ...state, users: { ...state.users, followers: action.payload } };
+    case GET_USER_FOLLOWING:
+      return { ...state, users: { ...state.users, following: action.payload } };
+    case GET_SEARCH_USERS:
+      return { ...state, users: { ...state.users, search: action.payload } };
     case USER_PROFILE:
       return {
         ...state,
