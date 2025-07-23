@@ -250,6 +250,48 @@ export const dislikePostHandler = function (schema, request) {
 };
 
 /**
+ * This handler handles adding a comment to a post in the db.
+ * send POST Request at /api/posts/comment/:postId
+ * body contains { text }
+ * */
+export const addCommentHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: [
+            "The username you entered is not Registered. Not Found error",
+          ],
+        }
+      );
+    }
+    const postId = request.params.postId;
+    const { text } = JSON.parse(request.requestBody);
+    let post = schema.posts.findBy({ _id: postId }).attrs;
+    if (!post.comment) post.comment = [];
+    const comment = {
+      _id: uuid(),
+      username: user.username,
+      text,
+    };
+    post.comment = [...post.comment, comment];
+    this.db.posts.update({ _id: postId }, post);
+    return new Response(201, {}, { posts: this.db.posts });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
+/**
  * This handler handles deleting a post in the db.
  * send DELETE Request at /api/user/posts/:postId
  * */
