@@ -10,9 +10,9 @@ import {
   postLike,
   singlePost,
 } from "../utils/services";
-import { ADD_BOOKMARK, GET_ALL_POSTS, GET_ALL_USERS, USER_PROFILE } from "../utils/action";
+import { ADD_BOOKMARK, GET_ALL_POSTS, GET_ALL_USERS, USER_PROFILE, EDIT_POSTS, DELETE_POSTS } from "../utils/action";
 import { useAuth } from "./AuthContext";
-import { allBookmarkPosts, postBookmark, removePostBookmark } from "../utils/services/postServices";
+import { allBookmarkPosts, postBookmark, removePostBookmark, postEdit, postDelete, postComment } from "../utils/services/postServices";
 
 export const PostContext = createContext();
 
@@ -149,7 +149,41 @@ export function PostProvider({ children }) {
       console.error("Error fetching user profile:", error.message);
       throw error;
     }
-  } 
+  }
+  const editPost = async (postId, content, token) => {
+    try {
+      const { data: { posts }, status } = await postEdit(postId, { content }, token);
+      if (status === 200 || status === 201) {
+        dispatch({ type: GET_ALL_POSTS, payload: posts });
+      }
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  };
+
+  const deletePost = async (postId, token) => {
+    try {
+      const { data: { posts }, status } = await postDelete(postId, token);
+      if (status === 200 || status === 201) {
+        dispatch({ type: GET_ALL_POSTS, payload: posts });
+      }
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  };
+  const addComment = async (postId, text, token) => {
+    try {
+      const { data: { posts }, status } = await postComment(postId, text, token);
+      if (status === 200 || status === 201) {
+        dispatch({ type: GET_ALL_POSTS, payload: posts });
+      }
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  };
  
   return (
     <PostContext.Provider
@@ -165,7 +199,10 @@ export function PostProvider({ children }) {
         bookmarkPost,
         removeBookmarkPost,
         getAllBookmarkPosts,
-        userFetch
+        userFetch,
+        editPost,
+        deletePost,
+        addComment
       }}
     >
       {children}
