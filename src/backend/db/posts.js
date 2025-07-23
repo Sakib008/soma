@@ -204,7 +204,7 @@ export const posts = [
     _id: 'postId21',
     content: "You Don't reach at the level of you Goal,✨🎇👔 You fall on the level of your system.🎑🎑",
     likes: {
-      likeCount: 4,
+      likeCount: 9,
       likedBy: [],
       dislikedBy: [],
     },
