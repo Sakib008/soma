@@ -81,7 +81,7 @@ const Explore = () => {
               <span className="ml-2">Loading posts...</span>
             </div>
           )}
-
+          <h2 className="text-4xl font-bold ">Explore</h2>
           {/* Posts grid */}
           <div className="grid gap-4">
             {state?.posts?.all?.map((post) => (
