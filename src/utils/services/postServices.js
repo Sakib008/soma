@@ -40,9 +40,11 @@ const postCreate = async (encodedToken,content) => {
   }
 };
 
-const postEdit = async (postId, postData) => {
+const postEdit = async (postId, postData, encodedToken) => {
   try {
-    return await axios.post(`/api/posts/edit/${postId}`, postData);
+    return await axios.post(`/api/posts/edit/${postId}`, postData, {
+      headers: { authorization: encodedToken },
+    });
   } catch (error) {
     console.error(error);
     throw error;
@@ -108,9 +110,22 @@ const allBookmarkPosts = async (encodedToken)=>{
     throw error
   }
 }
-const postDelete = async (postId) => {
+const postDelete = async (postId, encodedToken) => {
   try {
-    return await axios.post(`/api/user/posts/${postId}`);
+    return await axios.delete(`/api/user/posts/${postId}`, {
+      headers: { authorization: encodedToken },
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const postComment = async (postId, text, encodedToken) => {
+  try {
+    return await axios.post(`/api/posts/comment/${postId}`, { text }, {
+      headers: { authorization: encodedToken },
+    });
   } catch (error) {
     console.error(error);
     throw error;
@@ -127,5 +142,6 @@ export {
   postDelete,
   postDislike,
   postBookmark,
-  removePostBookmark,allBookmarkPosts
+  removePostBookmark,allBookmarkPosts,
+  postComment
 };
