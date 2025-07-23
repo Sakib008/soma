@@ -54,9 +54,28 @@ src/
 
 ## Screenshots
 
-_Add screenshots here to showcase your app UI._
-### Home
+### Home Page
 ![Home](https://drive.google.com/uc?export=view&id=1a-2eqBYWncPVtSlcCHgZjVc66D8DUleB)
+
+
+### Explore Page
+
+![Explore](https://drive.google.com/uc?export=view&id=1arrZbDT20O9i7AeOYO6aZPkkQ8hetL5S)
+
+
+### Profile Page
+
+![Profile](https://drive.google.com/uc?export=view&id=1UZKshYc1cbcP-xOSAfP9ruzdp-gJ3Hxn)
+
+
+### Single Post Page
+
+![SinglePost](https://drive.google.com/uc?export=view&id=1oBw98GTEW218U2zv8Z35IZRv5OhFXPtH)
+
+### Create Post
+
+![CreatePost](https://drive.google.com/uc?export=view&id=1DT6K3QaHeNparxBABPHWx1r3TPPBexj7)
+
 
 ---
 
