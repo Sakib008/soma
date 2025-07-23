@@ -5,6 +5,8 @@ import {
   ADD_BOOKMARK,
   USER_PROFILE,
   GET_LIKED_POSTS,
+  EDIT_POSTS,
+  DELETE_POSTS,
 } from "../utils/action";
 
 export const initialState = {
@@ -48,6 +50,10 @@ const postReducer = (state, action) => {
         ...state,
         posts: { ...state.posts, bookmark: action.payload },
       };
+    case EDIT_POSTS:
+      return { ...state, posts: { ...state.posts, all: action.payload } };
+    case DELETE_POSTS:
+      return { ...state, posts: { ...state.posts, all: action.payload } };
     default:
       return state;
   }
