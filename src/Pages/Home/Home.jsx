@@ -3,43 +3,7 @@ import { usePost } from "../../Context/PostContext";
 import Post from "../../components/Post";
 import { postFollow } from "../../utils/services/userServices";
 import { useAuth } from "../../Context/AuthContext";
-
-const SuggestedUsers = ({ users, followingUsernames, currentUsername, onFollow }) => {
-  // Filter out current user and already-followed users
-  const {Token} = useAuth()
-  const suggested = users.filter(
-    (user) => user.username !== currentUsername && !followingUsernames.includes(user.username)
-  );
-  console.log("Following users : ",followingUsernames)
-  console.log("Suggested users : ",suggested)
-  return (
-    <div className="bg-white shadow-lg rounded-2xl p-4 w-72">
-      <h2 className="font-bold text-lg mb-2">Suggested Users</h2>
-      {suggested.length === 0 ? (
-        <div className="text-gray-500">No suggestions</div>
-      ) : (
-        suggested.map((user) => (
-          <div key={user._id} className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <img
-                src={user.avatar || `https://ui-avatars.com/api/?name=${user.username}&length=1`}
-                alt={user.username}
-                className="w-8 h-8 rounded-full"
-              />
-              <span className="font-medium">{user.username}</span>
-            </div>
-            <button
-              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm"
-              onClick={() => onFollow(user._id,Token)}
-            >
-              Follow
-            </button>
-          </div>
-        ))
-      )}
-    </div>
-  );
-};
+import SuggestedUsers from "./components/suggestedUsers";
 
 const Home = () => {
   const {loading} = useAuth();
@@ -72,6 +36,7 @@ const Home = () => {
   const currentUsername = state.profile.username;
   const following = state.profile.following || [];
   const followingUsernames = following.map((user) => user.username);
+  
   // Filter posts: show posts from current user and users they follow
   const homePosts = state.posts.all.filter(
     (post) => post.username === currentUsername || followingUsernames.includes(post.username)
