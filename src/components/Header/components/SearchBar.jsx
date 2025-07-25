@@ -1,11 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePost } from "../../../Context/PostContext";
 import { BiSearch } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const SearchBar = () => {
-  const { state } = usePost();
+  const { state,getAllUser } = usePost();
   const searchRef = useRef();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,11 +22,19 @@ const SearchBar = () => {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  console.log("users in search bar", state.users.all);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      if (state.users.all.length === 0) {
+        await getAllUser();
+      }
+    }
+    fetchUsers();
+  }, []);
+
 
   return (
     <div>
-      <div className="w-80 relative z-10 flex shadow-lg">
+      <div className="w-60 md:w-80 relative z-10 flex shadow-lg">
         <input
           type="text"
           ref={searchRef}
