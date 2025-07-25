@@ -7,10 +7,10 @@ const Header = () => {
   const {state} = usePost(); 
   return (
     <div className="bg-secondary-bg p-2 top-0 w-full flex h-16 justify-between items-center shadow-md">
-        <div className='logo mx-8'>
-          <h1 className='font-bold font-primary flex items-center text-4xl text-primary-text'>
-            <TbMessageForward size={50}/>
-            SOMA
+        <div className='logo mx-2 md:mx-8'>
+          <h1 className='font-bold font-primary flex items-center text-xl md:text-4xl text-primary-text'>
+            <TbMessageForward className="text-4xl"/>
+            <span className="hidden md:block">SOMA</span>
           </h1>
         </div>
         <SearchBar/>
