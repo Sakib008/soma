@@ -152,8 +152,8 @@ const Post = ({ myPost ,bookmarkPage }) => {
         </div>
       )}
       {shareOpen && (
-        <div className="fixed inset-0 h-full bg-black bg-opacity-40 flex items-center justify-center z-20 pointer-events-auto">
-          <div className="bg-white text-primary-bg rounded-lg shadow-lg p-6 w-full max-w-md relative z-30 pointer-events-auto" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0  h-full bg-black bg-opacity-40 flex items-center justify-center z-20 pointer-events-auto">
+          <div className="bg-white text-primary-bg rounded-lg shadow-lg p-6 w-[90vw] md:w-96 max-w-md relative z-30 pointer-events-auto" onClick={e => e.stopPropagation()}>
             <button className="absolute top-4 right-4 text-4xl" onClick={() => setShareOpen(false)}>&times;</button>
             <h2 className="text-2xl font-bold mb-4">Share Post</h2>
             <div className="flex items-center gap-2">
@@ -173,7 +173,7 @@ const Post = ({ myPost ,bookmarkPage }) => {
           </div>
         </div>
       )}
-      <div className="max-w-[28vw] w-full px-6 flex flex-col items-center shadow-xl rounded-3xl m-4 text-primary-bg">
+      <div className="md:max-w-[56vw] lg:max-w-[28vw] w-[90vw] px-6 flex flex-col items-center shadow-xl rounded-3xl m-4 text-primary-bg">
       <div className=" relative flex justify-between w-full m-4 items-center">
         <div className="flex">
           <div className="size-14 ">
