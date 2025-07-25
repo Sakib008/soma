@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../components/Header/Header";
 import Sidebar from "./Sidebar";
 import CreatePostModal from "./CreatePostModal";
 import { useAuth } from "../Context/AuthContext";
