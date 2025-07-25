@@ -11,7 +11,7 @@ const Sidebar = ({ onOpenModal }) => {
     { name: "likes", path: "/like", icon: BsHeart },
   ];
   return (
-    <div className="flex flex-col h-full bg-secondary-bg text-2xl w-80 text-primary-text justify-start">
+    <div className=" hidden md:flex flex-col h-full bg-secondary-bg text-2xl md:w-60 lg:w-80 text-primary-text justify-start">
       {sideLink.map(({ name, path, icon: Icon }, index) => (
         <Link
           className="ml-6 my-1 flex items-center p-2 gap-2 hover:bg-primary-bg/20 transition-colors"
