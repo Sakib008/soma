@@ -2,29 +2,37 @@ import { usePost } from "../../Context/PostContext";
 import { useAuth } from "../../Context/AuthContext";
 import { useEffect } from "react";
 import Post from "../../components/Post";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
-  const { state, userFetch, getAllPost } = usePost();
+  const { state, getAllUser, getAllPost } = usePost();
   const { logoutUser, loading } = useAuth();
+  const { username } = useParams();
+  const user =
+    state.users.all.find((user) => user.username === username) ||
+    {};
 
   useEffect(() => {
-    userFetch();
-    getAllPost();
-    // eslint-disable-next-line
-  }, []);
+   const fetchUserData = async () => {
+      if (!user.username) {
+        await getAllUser;
+      }
+      if (state.posts.all.length === 0) {
+        await getAllPost();
+      }
+    }
+    fetchUserData();
+  }, [user.username, getAllUser, getAllPost, state.posts.all.length]);
 
   if (loading) {
     return <div className="text-center text-xl font-semibold">Loading...</div>;
   }
 
-  const user = state.profile;
   const userPosts = state.posts.all.filter(
     (post) => post.username === user.username
   );
   const followers = user.followers || [];
   const following = user.following || [];
-
-
 
   return (
     <div className="flex flex-col items-center gap-8 max-w-3xl mx-auto py-8">
@@ -86,9 +94,7 @@ const Profile = () => {
             No posts yet.
           </div>
         ) : (
-          userPosts.map((post) => (
-            <Post key={post._id} myPost={post}/>
-          ))
+          userPosts.map((post) => <Post key={post._id} myPost={post} />)
         )}
       </div>
     </div>
